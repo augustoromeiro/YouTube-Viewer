@@ -53,6 +53,7 @@ def download_driver(patched_drivers):
             ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '--version'], stdout=subprocess.PIPE)
         version = process.communicate()[0].decode(
             'UTF-8').replace('Google Chrome', '').strip()
+        return osname, exe_name
     elif osname == 'Windows':
         osname = 'win'
         exe_name = ".exe"
