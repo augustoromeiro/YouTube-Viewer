@@ -44,8 +44,9 @@ RUN mkdir -p /etc/apt/keyrings && \
     apt-get update && apt-get install -y google-chrome-stable && \
     rm -rf /var/lib/apt/lists/*
 
-RUN CHROME_VERSION=$(google-chrome --version | awk '{print $3}') && \
-    DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION") && \
+# Instalar o ChromeDriver
+RUN CHROME_VERSION=$(google-chrome --version | awk '{print $3}' || echo "116.0.5845.111") && \
+    DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION" || echo "116.0.5845.111") && \
     wget -q "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip" -O /tmp/chromedriver.zip && \
     unzip /tmp/chromedriver.zip -d /usr/bin/ && \
     rm /tmp/chromedriver.zip && \
