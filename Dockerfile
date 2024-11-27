@@ -77,5 +77,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Exponha a porta necessária (caso use servidor HTTP)
 EXPOSE 5000
 
-# Substituir o comando principal por um script de inicialização
-CMD ["bash", "/app/start.sh"]
+# Comando para executar o script principal
+CMD ["python", "youtube_viewer.py"]
