@@ -9,7 +9,33 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     gcc \
     python3-dev \
+    libxrender1 \
+    libxext6 \
+    libxrandr2 \
+    fonts-liberation \
+    libnss3 \
+    libatk-bridge2.0-0 \
+    libgtk-3-0 \
+    libgbm-dev \
+    libasound2 \
     && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y \
+    x11-utils \
+    libx11-xcb1 \
+    libxcb-glx0 \
+    libxrender1 \
+    libxext6 \
+    libxrandr2 \
+    libgtk-3-0 \
+    libgbm-dev \
+    libasound2 \
+    libnss3 \
+    fonts-liberation \
+    x11-apps \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV DISPLAY=:0
 
 # Adicione o repositório do Google Chrome e instale o Google Chrome estável
 RUN mkdir -p /etc/apt/keyrings && \
@@ -17,6 +43,13 @@ RUN mkdir -p /etc/apt/keyrings && \
     echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
     apt-get update && apt-get install -y google-chrome-stable && \
     rm -rf /var/lib/apt/lists/*
+
+RUN CHROME_VERSION=$(google-chrome --version | awk '{print $3}') && \
+    DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION") && \
+    wget -q "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip" -O /tmp/chromedriver.zip && \
+    unzip /tmp/chromedriver.zip -d /usr/bin/ && \
+    rm /tmp/chromedriver.zip && \
+    chmod +x /usr/bin/chromedriver
 
 # Configure variáveis de ambiente para evitar mensagens interativas
 ENV PYTHONDONTWRITEBYTECODE=1

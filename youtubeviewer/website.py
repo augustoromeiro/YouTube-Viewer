@@ -37,7 +37,7 @@ MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
 console = []
 summary_table = ''
 html_table = ''
-database = 'database.db'
+database = '../database.db'
 
 
 def create_graph_data(dropdown_text):
@@ -158,4 +158,4 @@ def start_server(host, port, debug=False):
 
 
 if __name__ == '__main__':
-    start_server(host='0.0.0.0', port=5000, debug=True)
+    start_server(host='0.0.0.0', port=5001, debug=True)

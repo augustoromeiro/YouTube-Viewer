@@ -24,6 +24,8 @@ SOFTWARE.
 import os
 from glob import glob
 
+from webdriver_manager.chrome import ChromeDriverManager
+
 from .features import *
 
 WEBRTC = os.path.join('extension', 'webrtc_control.zip')
@@ -133,7 +135,7 @@ def get_driver(background, viewports, agent, auth_required, path, proxy, proxy_t
     else:
         options.add_argument(f'--proxy-server={proxy_type}://{proxy}')
 
-    service = Service(executable_path=path)
+    service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
 
     return driver
