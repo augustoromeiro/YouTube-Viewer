@@ -45,7 +45,7 @@ RUN mkdir -p /etc/apt/keyrings && \
     rm -rf /var/lib/apt/lists/*
 
 # Baixar uma versão específica do ChromeDriver
-RUN DRIVER_VERSION="116.0.5845.96" && \
+RUN DRIVER_VERSION="114.0.5735.90" && \
     wget -q "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip" -O /tmp/chromedriver.zip && \
     unzip /tmp/chromedriver.zip -d /usr/bin/ && \
     rm /tmp/chromedriver.zip && \
