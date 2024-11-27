@@ -16,7 +16,7 @@
         "proxy_api": false,
         "refresh": 0.0
     },
-    "background": true,
+    "background": false,
     "bandwidth": false,
     "playback_speed": 3,
     "max_threads": 5,
