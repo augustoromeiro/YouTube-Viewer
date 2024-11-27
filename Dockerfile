@@ -65,6 +65,9 @@ WORKDIR /app
 # Copie os arquivos necessários para o contêiner
 COPY . /app
 
+# Garanta que o script de inicialização seja executável
+RUN chmod +x /app/start.sh
+
 # Atualize o pip para evitar problemas com versões antigas
 RUN pip install --upgrade pip
 
@@ -74,5 +77,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Exponha a porta necessária (caso use servidor HTTP)
 EXPOSE 5000
 
-# Comando para executar o script principal
-CMD ["python", "youtube_viewer.py"]
+# Substituir o comando principal por um script de inicialização
+CMD ["bash", "/app/start.sh"]
